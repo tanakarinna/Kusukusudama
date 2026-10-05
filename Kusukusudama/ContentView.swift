@@ -7,10 +7,25 @@
 
 import SwiftUI
 
+enum Screen {
+    case card
+    case kusudama
+}
+
 struct ContentView: View {
+    // 重要なのはScreen型のscreenっていう変数を定義して、初期値をcardにしていること
+    @State private var screen: Screen = .card
     var body: some View {
-      CardView()
-            .padding(.horizontal, 16)
+        switch screen {
+            case .card:
+            CardView(onComplete: {
+                screen = .kusudama
+            })
+                  .padding(.horizontal, 16)
+        case .kusudama:
+            Text("kusudama")
+        }
+
     }
 }
 

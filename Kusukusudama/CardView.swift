@@ -11,9 +11,11 @@ struct CardView: View {
 
     @State var inputMessage = ""
     @FocusState var isFocused: Bool
+    
+    var onComplete: () -> Void
+
     var body: some View {
         ZStack {
-
             VStack {
                 Spacer()
                 Text("メッセージを入力してね")
@@ -27,6 +29,7 @@ struct CardView: View {
                 Spacer()
                 Button("入力できた！") {
                     isFocused = false
+                    onComplete() 
                 }
                 .fontWeight(.bold)
                 .foregroundColor(.brown)
@@ -50,5 +53,5 @@ struct CardView: View {
 }
 
 #Preview {
-    CardView()
+    CardView(onComplete: {})
 }
