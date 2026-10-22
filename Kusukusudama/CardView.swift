@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardView: View {
 
-    @State var inputMessage = ""
+    @Binding var inputMessage: String
     @FocusState var isFocused: Bool
     
     var onComplete: () -> Void
@@ -53,5 +53,5 @@ struct CardView: View {
 }
 
 #Preview {
-    CardView(onComplete: {})
+    CardView(inputMessage: .constant(""), onComplete: {})
 }

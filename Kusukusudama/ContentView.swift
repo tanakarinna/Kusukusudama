@@ -15,15 +15,16 @@ enum Screen {
 struct ContentView: View {
     // 重要なのはScreen型のscreenっていう変数を定義して、初期値をcardにしていること
     @State private var screen: Screen = .card
+    @State var inputMessage = "" //@Stateってするとviewがデータを所持することになるから、viewの中に書かなきゃ
     var body: some View {
         switch screen {
             case .card:
-            CardView(onComplete: {
+            CardView(inputMessage: $inputMessage, onComplete: {
                 screen = .kusudama
             })
                   .padding(.horizontal, 16)
         case .kusudama:
-            Text("kusudama")
+            KusudamaView(message: inputMessage)
         }
 
     }
