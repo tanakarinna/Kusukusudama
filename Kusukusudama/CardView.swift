@@ -23,14 +23,14 @@ struct CardView: View {
                     .fontWeight(.bold)
                     .foregroundColor(.brown)
                 Spacer()
-                Spacer()
-                TextField("ここだよ", text: $inputMessage)
-                    .textFieldStyle(.roundedBorder)
-                    .focused($isFocused)
-                    .padding(.horizontal, 16)
-                    .onChange(of: inputMessage){
-                        emptyStringGuard = false
-                    }
+                VStack {
+                    TextField("ここだよ", text: $inputMessage)
+                        .textFieldStyle(.roundedBorder)
+                        .focused($isFocused)
+                        .padding(.horizontal, 16)
+                        .onChange(of: inputMessage){
+                            emptyStringGuard = false
+                        }
 
                     Text("＊何も入力されてないよ〜")
                         .foregroundColor(Color(red: 0.65, green: 0.24, blue: 0.18))
@@ -38,6 +38,7 @@ struct CardView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 16)
                         .opacity(emptyStringGuard == true ? 1 : 0)
+                }
                 Spacer()
                 Button("入力できた！") {
                     isFocused = false
