@@ -11,7 +11,8 @@ struct CardView: View {
 
     @Binding var inputMessage: String
     @FocusState var isFocused: Bool
-    
+    @State private var emptyStringGuard = false
+
     var onComplete: () -> Void
 
     var body: some View {
@@ -26,10 +27,24 @@ struct CardView: View {
                     .textFieldStyle(.roundedBorder)
                     .focused($isFocused)
                     .padding(.horizontal, 16)
+                    .onChange(of: inputMessage){
+                        emptyStringGuard = false
+                    }
+                if emptyStringGuard == true {
+                    Text("＊何も入力されてないよ〜")
+                        .foregroundColor(Color(red: 0.65, green: 0.24, blue: 0.18))
+                        .font(.caption)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 16)
+                }
                 Spacer()
                 Button("入力できた！") {
                     isFocused = false
-                    onComplete() 
+                    if inputMessage.isEmpty{
+                        emptyStringGuard = true
+                    } else {
+                        onComplete()
+                    }
                 }
                 .fontWeight(.bold)
                 .foregroundColor(.brown)
