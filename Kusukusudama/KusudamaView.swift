@@ -13,16 +13,8 @@ struct KusudamaView: View {
     var body: some View {
         VStack {
             ZStack {
-                Circle()
-                    .trim(from: 0, to: 0.5)
-                    .fill(Color(red: 0xF2/255, green: 0xB5/255, blue: 0x3B/255))
-                    .rotationEffect(.degrees(90))
-                    .frame(width:250, height:250)
-                Circle()
-                    .trim(from: 0, to: 0.5)
-                    .fill(Color(red: 0xF2/255, green: 0xB5/255, blue: 0x3B/255))
-                    .rotationEffect(.degrees(-90))
-                    .frame(width:250, height:250)
+                HalfCircleView(angle: 90)
+                HalfCircleView(angle: -90)
             }
             Text(message)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -36,6 +28,17 @@ struct KusudamaView: View {
                     .padding(16)
                 }
         }
+    }
+}
+
+private struct HalfCircleView: View {
+    let angle: Double
+    var body: some View {
+        Circle()
+            .trim(from: 0, to: 0.5)
+            .fill(Color(red: 0xF2/255, green: 0xB5/255, blue: 0x3B/255))
+            .rotationEffect(.degrees(angle))
+            .frame(width:250, height:250)
     }
 }
 
