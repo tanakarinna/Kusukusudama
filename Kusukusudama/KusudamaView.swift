@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct KusudamaView: View {
+    @State private var isOpened = false
     let message: String
     var onRestart: () -> Void
     var body: some View {
         VStack {
             ZStack {
-                HalfCircleView(angle: 90)
-                HalfCircleView(angle: -90)
+                HalfCircleView(angle: isOpened ? 120 : 90)
+                    .offset(x: isOpened ? -61 : 0)
+                HalfCircleView(angle: isOpened ? -120 : -90)
+                    .offset(x: isOpened ? 61 : 0)
+
+            }
+            .onTapGesture {
+                isOpened.toggle()
             }
             Text(message)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
