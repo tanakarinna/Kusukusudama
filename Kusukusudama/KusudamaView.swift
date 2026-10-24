@@ -37,6 +37,11 @@ private struct HalfCircleView: View {
         Circle()
             .trim(from: 0, to: 0.5)
             .fill(Color(red: 0xF2/255, green: 0xB5/255, blue: 0x3B/255))
+            .overlay {
+                Circle()
+                    .trim(from: 0, to: 0.5)
+                    .stroke(Color(red: 0xC9/255, green: 0x8A/255, blue: 0x1B/255), lineWidth: 4)
+            }
             .rotationEffect(.degrees(angle))
             .frame(width:250, height:250)
     }
