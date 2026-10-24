@@ -25,7 +25,6 @@ struct KusudamaView: View {
     }
 }
 
-
 #Preview {
     KusudamaView(message: "", onRestart: {})
 }
