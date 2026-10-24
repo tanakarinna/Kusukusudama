@@ -12,28 +12,30 @@ struct KusudamaView: View {
     let message: String
     var onRestart: () -> Void
     var body: some View {
-        VStack {
+        ZStack {
+            TaremakuView(message: message)
+                .offset(y: 55)
+                .opacity(isOpened ? 1 : 0)
             ZStack {
                 HalfCircleView(angle: isOpened ? 120 : 90)
                     .offset(x: isOpened ? -61 : 0)
                 HalfCircleView(angle: isOpened ? -120 : -90)
                     .offset(x: isOpened ? 61 : 0)
-
             }
+            .offset(y:-180)
             .onTapGesture {
                 isOpened.toggle()
             }
-            Text(message)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .overlay(alignment: .topLeading) {
-                    Button {
-                        onRestart()
-                    } label: {
-                        Image(systemName: "arrow.counterclockwise")
-                    }
-                    .buttonStyle(.glass)
-                    .padding(16)
-                }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .overlay(alignment: .topLeading) {
+            Button {
+                onRestart()
+            } label: {
+                Image(systemName: "arrow.counterclockwise")
+            }
+            .buttonStyle(.glass)
+            .padding(16)
         }
     }
 }
@@ -51,6 +53,19 @@ private struct HalfCircleView: View {
             }
             .rotationEffect(.degrees(angle))
             .frame(width:250, height:250)
+    }
+}
+
+private struct TaremakuView: View {
+    let message: String
+    var body: some View {
+        RoundedRectangle(cornerRadius: 6)
+            .fill(Color(red: 0xFB/255, green: 0xF3/255, blue: 0xE4/255))
+            .frame(width:125,height:480)
+            .overlay {
+                Text(message)
+                    .foregroundStyle(Color(red: 0x5A/255, green: 0x3E/255, blue: 0x2B/255))
+            }
     }
 }
 
