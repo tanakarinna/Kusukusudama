@@ -24,7 +24,9 @@ struct ContentView: View {
             })
                   .padding(.horizontal, 16)
         case .kusudama:
-            KusudamaView(message: inputMessage)
+            KusudamaView(message: inputMessage, onRestart: {
+                screen = .card
+            })
         }
 
     }
