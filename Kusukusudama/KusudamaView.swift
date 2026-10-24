@@ -15,6 +15,7 @@ struct KusudamaView: View {
         ZStack {
             TaremakuView(message: message)
                 .offset(y: 55)
+                .opacity(isOpened ? 1 : 0)
             ZStack {
                 HalfCircleView(angle: isOpened ? 120 : 90)
                     .offset(x: isOpened ? -61 : 0)
