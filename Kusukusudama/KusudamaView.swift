@@ -12,11 +12,18 @@ struct KusudamaView: View {
     var onRestart: () -> Void
     var body: some View {
         VStack {
-            Circle()
-                .trim(from: 0, to: 0.5)
-                .fill(Color(red: 0xF2/255, green: 0xB5/255, blue: 0x3B/255))
-                .rotationEffect(.degrees(90))
-                .frame(width:250, height:250)
+            ZStack {
+                Circle()
+                    .trim(from: 0, to: 0.5)
+                    .fill(Color(red: 0xF2/255, green: 0xB5/255, blue: 0x3B/255))
+                    .rotationEffect(.degrees(90))
+                    .frame(width:250, height:250)
+                Circle()
+                    .trim(from: 0, to: 0.5)
+                    .fill(Color(red: 0xF2/255, green: 0xB5/255, blue: 0x3B/255))
+                    .rotationEffect(.degrees(-90))
+                    .frame(width:250, height:250)
+            }
             Text(message)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .overlay(alignment: .topLeading) {
