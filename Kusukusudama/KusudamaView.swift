@@ -69,12 +69,16 @@ private struct TaremakuView: View {
             .fill(Color(red: 0xFB/255, green: 0xF3/255, blue: 0xE4/255))
             .frame(width:125,height:480)
             .overlay {
-                Text(message)
-                    .foregroundStyle(Color(red: 0x5A/255, green: 0x3E/255, blue: 0x2B/255))
+                VStack {
+                    ForEach(Array(message).indices, id: \.self) { index in
+                        Text(String(Array(message)[index]))
+                            .foregroundStyle(Color(red: 0x5A/255, green: 0x3E/255, blue: 0x2B/255))
+                    }
+                }
             }
     }
 }
 
 #Preview {
-    KusudamaView(message: "", onRestart: {})
+    KusudamaView(message: "おおきいたこやき", onRestart: {})
 }
