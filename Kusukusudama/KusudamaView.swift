@@ -14,8 +14,11 @@ struct KusudamaView: View {
     var body: some View {
         ZStack {
             TaremakuView(message: message)
+                .mask(alignment: .top) {
+                    Rectangle()
+                        .frame(height: isOpened ? 480 : 0)
+                }
                 .offset(y: 55)
-                .opacity(isOpened ? 1 : 0)
 
             ZStack {
                 HalfCircleView(angle: isOpened ? 120 : 90)
