@@ -12,6 +12,8 @@ struct CardView: View {
     @Binding var inputMessage: String
     @FocusState var isFocused: Bool
     @State private var emptyStringGuard = false
+    @State private var maxMessageGuard = false
+    private let maxMessage = 16
 
     var onComplete: () -> Void
 
@@ -30,20 +32,36 @@ struct CardView: View {
                         .padding(.horizontal, 16)
                         .onChange(of: inputMessage){
                             emptyStringGuard = false
+                            maxMessageGuard = false
                         }
 
-                    Text("＊何も入力されてないよ〜")
-                        .foregroundColor(Color(red: 0.65, green: 0.24, blue: 0.18))
-                        .font(.caption)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 16)
-                        .opacity(emptyStringGuard == true ? 1 : 0)
+                    if emptyStringGuard {
+                        Text("＊何も入力されてないよ〜")
+                            .foregroundColor(Color(red: 0.65, green: 0.24, blue: 0.18))
+                            .font(.caption)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, 16)
+                    } else if maxMessageGuard {
+                        Text("＊文字数が多すぎるよ")
+                            .foregroundColor(Color(red: 0.65, green: 0.24, blue: 0.18))
+                            .font(.caption)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, 16)
+                    } else {
+                        Text("\(maxMessage)文字までだよ")
+                            .foregroundColor(Color(.brown))
+                            .font(.caption)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, 16)
+                    }
                 }
                 Spacer()
                 Button("入力できた！") {
                     isFocused = false
                     if inputMessage.isEmpty{
                         emptyStringGuard = true
+                    } else if inputMessage.count > maxMessage {
+                        maxMessageGuard = true
                     } else {
                         onComplete()
                     }
