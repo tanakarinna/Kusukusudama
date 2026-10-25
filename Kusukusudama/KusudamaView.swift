@@ -16,6 +16,7 @@ struct KusudamaView: View {
             TaremakuView(message: message)
                 .offset(y: 55)
                 .opacity(isOpened ? 1 : 0)
+
             ZStack {
                 HalfCircleView(angle: isOpened ? 120 : 90)
                     .offset(x: isOpened ? -61 : 0)
@@ -24,7 +25,9 @@ struct KusudamaView: View {
             }
             .offset(y:-180)
             .onTapGesture {
-                isOpened.toggle()
+                withAnimation(.easeOut(duration: 0.3)) {
+                    isOpened.toggle()
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
