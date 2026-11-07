@@ -13,7 +13,7 @@ struct CardView: View {
     @FocusState var isFocused: Bool
     @State private var emptyStringGuard = false
     @State private var maxMessageGuard = false
-    private let maxMessage = 16
+    private let maxMessage = 15
 
     var onComplete: () -> Void
 

@@ -73,6 +73,7 @@ private struct TaremakuView: View {
                     ForEach(Array(message).indices, id: \.self) { index in
                         Text(String(Array(message)[index]))
                             .foregroundStyle(Color(red: 0x5A/255, green: 0x3E/255, blue: 0x2B/255))
+                            .font(.system(size: 24))
                     }
                 }
             }
@@ -80,5 +81,5 @@ private struct TaremakuView: View {
 }
 
 #Preview {
-    KusudamaView(message: "おおきいたこやき", onRestart: {})
+    KusudamaView(message: "１５文字だとちょうどいい大きさ", onRestart: {})
 }
