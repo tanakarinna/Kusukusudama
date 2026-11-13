@@ -17,7 +17,6 @@ struct ContentView: View {
     @State private var screen: Screen = .card
     @State var inputMessage = "" //@Stateってするとviewがデータを所持することになるから、viewの中に書かなきゃ
     var body: some View {
-        Group {
             switch screen {
             case .card:
                 CardView(inputMessage: $inputMessage, onComplete: {
@@ -29,9 +28,6 @@ struct ContentView: View {
                     screen = .card
                 })
             }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(.white))
     }
 }
 
