@@ -17,17 +17,17 @@ struct ContentView: View {
     @State private var screen: Screen = .card
     @State var inputMessage = "" //@Stateってするとviewがデータを所持することになるから、viewの中に書かなきゃ
     var body: some View {
-            switch screen {
+        switch screen {
             case .card:
-                CardView(inputMessage: $inputMessage, onComplete: {
-                    screen = .kusudama
-                })
-                .padding(.horizontal, 16)
-            case .kusudama:
-                KusudamaView(message: inputMessage, onRestart: {
-                    screen = .card
-                })
-            }
+            CardView(inputMessage: $inputMessage, onComplete: {
+                screen = .kusudama
+            })
+                  .padding(.horizontal, 16)
+        case .kusudama:
+            KusudamaView(message: inputMessage, onRestart: {
+                screen = .card
+            })
+        }
     }
 }
 
