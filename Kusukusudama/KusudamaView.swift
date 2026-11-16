@@ -25,6 +25,9 @@ struct KusudamaView: View {
                     .offset(x: isOpened ? -61 : 0)
                 HalfCircleView(angle: isOpened ? -120 : -90)
                     .offset(x: isOpened ? 61 : 0)
+                if isOpened {
+                    ConfettiView()
+                }
             }
             .offset(y:-180)
             .onTapGesture {
@@ -76,6 +79,20 @@ private struct TaremakuView: View {
                             .font(.system(size: 24))
                     }
                 }
+            }
+    }
+}
+
+private struct ConfettiView: View {
+    @State private var isFall = false
+    var body: some View {
+        Rectangle()
+            .fill(Color.red)
+            .frame(width: 10, height: 16)
+            .offset(y: isFall ? 300 : 0)
+            .animation(.easeIn(duration: 1), value: isFall)
+            .onAppear(){
+                isFall = true
             }
     }
 }
