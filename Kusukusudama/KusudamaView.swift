@@ -85,11 +85,12 @@ private struct TaremakuView: View {
 
 private struct ConfettiView: View {
     @State private var isFall = false
+    @State private var x = Double.random(in: -180 ... 180)
     var body: some View {
         Rectangle()
             .fill(Color.red)
             .frame(width: 10, height: 16)
-            .offset(y: isFall ? 500 : 0)
+            .offset(x: x, y: isFall ? 500 : -180)
             .animation(.easeIn(duration: 1), value: isFall)
             .onAppear(){
                 isFall = true
