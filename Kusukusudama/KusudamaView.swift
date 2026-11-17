@@ -33,7 +33,9 @@ struct KusudamaView: View {
                 }
             }
             if isOpened {
-                ConfettiView()
+                ForEach(0..<10, id:\.self) { _ in
+                    ConfettiView()
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
