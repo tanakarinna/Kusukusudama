@@ -25,15 +25,15 @@ struct KusudamaView: View {
                     .offset(x: isOpened ? -61 : 0)
                 HalfCircleView(angle: isOpened ? -120 : -90)
                     .offset(x: isOpened ? 61 : 0)
-                if isOpened {
-                    ConfettiView()
-                }
             }
             .offset(y:-180)
             .onTapGesture {
                 withAnimation(.easeOut(duration: 0.3)) {
                     isOpened.toggle()
                 }
+            }
+            if isOpened {
+                ConfettiView()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -89,7 +89,7 @@ private struct ConfettiView: View {
         Rectangle()
             .fill(Color.red)
             .frame(width: 10, height: 16)
-            .offset(y: isFall ? 300 : 0)
+            .offset(y: isFall ? 500 : 0)
             .animation(.easeIn(duration: 1), value: isFall)
             .onAppear(){
                 isFall = true
