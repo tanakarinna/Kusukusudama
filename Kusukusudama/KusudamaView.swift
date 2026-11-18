@@ -20,6 +20,12 @@ struct KusudamaView: View {
                 }
                 .offset(y: 55)
 
+            if isOpened {
+                ForEach(0..<10, id:\.self) { _ in
+                    ConfettiView()
+                }
+            }
+
             ZStack {
                 HalfCircleView(angle: isOpened ? 120 : 90)
                     .offset(x: isOpened ? -61 : 0)
@@ -30,11 +36,6 @@ struct KusudamaView: View {
             .onTapGesture {
                 withAnimation(.easeOut(duration: 0.3)) {
                     isOpened.toggle()
-                }
-            }
-            if isOpened {
-                ForEach(0..<10, id:\.self) { _ in
-                    ConfettiView()
                 }
             }
         }
