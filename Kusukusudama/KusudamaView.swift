@@ -20,6 +20,12 @@ struct KusudamaView: View {
                 }
                 .offset(y: 55)
 
+            if isOpened {
+                ForEach(0..<25, id:\.self) { _ in
+                    ConfettiView()
+                }
+            }
+
             ZStack {
                 HalfCircleView(angle: isOpened ? 120 : 90)
                     .offset(x: isOpened ? -61 : 0)
@@ -76,6 +82,25 @@ private struct TaremakuView: View {
                             .font(.system(size: 24))
                     }
                 }
+            }
+    }
+}
+
+private struct ConfettiView: View {
+    @State private var isFall = false
+    @State private var x = Double.random(in: -140...140)
+    @State private var color = Color(red: Double.random(in: 0...1), green: Double.random(in: 0...1), blue: Double.random(in: 0...1))
+    @State private var fallingDuration = Double.random(in: 0.8...1.8)
+    @State private var rotationAngle = Double.random(in: 560...1000)
+    var body: some View {
+        Rectangle()
+            .fill(color)
+            .frame(width: 10, height: 16)
+            .rotation3DEffect(.degrees(isFall ? rotationAngle : 0), axis: (x: 1, y: 1, z: 0))
+            .offset(x: x, y: isFall ? 500 : -200)
+            .animation(.easeIn(duration: fallingDuration), value: isFall)
+            .onAppear(){
+                isFall = true
             }
     }
 }
