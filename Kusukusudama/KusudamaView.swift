@@ -21,7 +21,7 @@ struct KusudamaView: View {
                 .offset(y: 55)
 
             if isOpened {
-                ForEach(0..<10, id:\.self) { _ in
+                ForEach(0..<25, id:\.self) { _ in
                     ConfettiView()
                 }
             }
@@ -88,7 +88,7 @@ private struct TaremakuView: View {
 
 private struct ConfettiView: View {
     @State private var isFall = false
-    @State private var x = Double.random(in: -160...160)
+    @State private var x = Double.random(in: -140...140)
     @State private var color = Color(red: Double.random(in: 0...1), green: Double.random(in: 0...1), blue: Double.random(in: 0...1))
     @State private var fallingDuration = Double.random(in: 0.8...1.8)
     @State private var rotationAngle = Double.random(in: 560...1000)
@@ -96,8 +96,8 @@ private struct ConfettiView: View {
         Rectangle()
             .fill(color)
             .frame(width: 10, height: 16)
-            .rotation3DEffect(.degrees(isFall ? rotationAngle : 0), axis: (x: 1, y: 0, z: 0))
-            .offset(x: x, y: isFall ? 500 : -180)
+            .rotation3DEffect(.degrees(isFall ? rotationAngle : 0), axis: (x: 1, y: 1, z: 0))
+            .offset(x: x, y: isFall ? 500 : -200)
             .animation(.easeIn(duration: fallingDuration), value: isFall)
             .onAppear(){
                 isFall = true
